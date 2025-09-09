@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
 
 # Poetry
 poetry.lock
@@ -11,9 +12,11 @@ venv/
 
 # IDE
 .idea/
+.vscode/
 *.swp
 *.swo
 .DS_Store
+Thumbs.db
 
 # Logs
 logs/
@@ -24,3 +27,4 @@ logs/
 
 # pytest
 .pytest_cache/
+
