@@ -1,6 +1,8 @@
 """Тесты для функций модуля widget."""
+
 import pytest
-from src.widget import mask_account_card, get_date
+
+from src.widget import get_date, mask_account_card
 
 
 # Тесты для mask_account_card
@@ -22,7 +24,7 @@ def test_mask_account_card_invalid():
 
 
 # Тесты для get_date
-def test_get_date():g
+def test_get_date():
     assert get_date("2024-03-11T02:26:18.671407") == "11.03.2024"
     assert get_date("2018-07-11T02:26:18") == "11.07.2018"
     assert get_date("2020-12-31T23:59:59.999999") == "31.12.2020"
