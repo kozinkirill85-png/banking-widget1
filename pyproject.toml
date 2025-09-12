@@ -17,6 +17,10 @@ black = "*"
 isort = "*"
 mypy = "*"
 
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.18.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
