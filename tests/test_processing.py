@@ -26,10 +26,10 @@ def test_filter_by_state_empty(empty_operations):
 
 @pytest.mark.parametrize(
     "reverse, first_id",
-    [
+    {
         (True, 41428829),   # по убыванию — самая новая операция
-        (False, 939719570), # по возрастанию — самая старая
-    ],
+        (False, 939719570),    # по возрастанию — самая старая
+    },
 )
 def test_sort_by_date(sample_operations, reverse, first_id):
     """Параметризованный тест сортировки."""
