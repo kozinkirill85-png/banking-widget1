@@ -1,10 +1,11 @@
 # tests/conftest.py
 
 import pytest
+from typing import Any, Dict, List
 
 
 @pytest.fixture
-def sample_operations():
+def sample_operations() -> List[Dict[str, Any]]:
     """Фикстура: список операций для тестов."""
     return [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
@@ -15,6 +16,6 @@ def sample_operations():
 
 
 @pytest.fixture
-def empty_operations():
+def empty_operations() -> List[Dict[str, Any]]:
     """Фикстура: пустой список операций."""
     return []
