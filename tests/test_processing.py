@@ -1,7 +1,9 @@
 # tests/test_processing.py
 
-import pytest
 from typing import Any, Dict, List
+
+import pytest
+
 from src.processing import filter_by_state, sort_by_date
 
 
@@ -29,7 +31,7 @@ def test_filter_by_state_empty(empty_operations: List[Dict[str, Any]]) -> None:
     "reverse, first_id",
     [
         (True, 41428829),   # по убыванию — самая новая операция
-        (False, 939719570), # по возрастанию — самая старая
+        (False, 939719570),    # по возрастанию — самая старая
     ],
 )
 def test_sort_by_date(
