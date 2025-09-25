@@ -32,7 +32,27 @@
 ### Как запустить тесты
 
 ```bash
+
+
 pytest tests/ -v
 
 My Homework
  develop
+ 
+ 
+## Модуль `generators`
+
+Модуль предоставляет генераторы для эффективной работы с большими объемами транзакций.
+
+### Функции
+
+#### `filter_by_currency(transactions, currency)`
+Фильтрует транзакции по валюте.
+
+**Пример:**
+```python
+from src.generators.generators import filter_by_currency
+
+usd_ops = filter_by_currency(transactions, "USD")
+for op in usd_ops:
+    print(op['description'])

@@ -30,15 +30,11 @@ def test_filter_by_state_empty(empty_operations: List[Dict[str, Any]]) -> None:
 @pytest.mark.parametrize(
     "reverse, first_id",
     [
-        (True, 41428829),   # по убыванию — самая новая операция
-        (False, 939719570),    # по возрастанию — самая старая
+        (True, 41428829),  # по убыванию — самая новая операция
+        (False, 939719570),  # по возрастанию — самая старая
     ],
 )
-def test_sort_by_date(
-    sample_operations: List[Dict[str, Any]],
-    reverse: bool,
-    first_id: int
-) -> None:
+def test_sort_by_date(sample_operations: List[Dict[str, Any]], reverse: bool, first_id: int) -> None:
     """Параметризованный тест сортировки."""
     result = sort_by_date(sample_operations, reverse=reverse)
     assert result[0]["id"] == first_id
