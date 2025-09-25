@@ -1,4 +1,5 @@
 """Тесты для функций модуля widget."""
+
 import pytest
 
 from src.widget import get_date, mask_account_card
