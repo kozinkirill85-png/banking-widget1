@@ -29,5 +29,5 @@ logs/
 .pytest_cache/
 
 # Coverage report
-".coverage" 
- .coverage
+#".coverage"
+# .coverage
