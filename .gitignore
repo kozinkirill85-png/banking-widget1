@@ -28,3 +28,6 @@ logs/
 # pytest
 .pytest_cache/
 
+# Coverage report
+#".coverage"
+# .coverage
