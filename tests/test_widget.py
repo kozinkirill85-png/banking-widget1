@@ -24,7 +24,11 @@ def test_mask_account_card_invalid() -> None:
 
 
 # Тесты для get_date
+<<<<<< feature/decorators-log
+def test_get_date():
+=======
 def test_get_date() -> None:
+>>>>> develop
     assert get_date("2024-03-11T02:26:18.671407") == "11.03.2024"
     assert get_date("2018-07-11T02:26:18") == "11.07.2018"
     assert get_date("2020-12-31T23:59:59.999999") == "31.12.2020"

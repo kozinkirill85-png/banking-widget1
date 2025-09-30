@@ -1,8 +1,40 @@
+ feature/decorators-log
+
  feature/homework_10_1
+ develop
 # 🏦 Banking Widget
 
 Проект для обработки банковских операций: маскировка данных, фильтрация и сортировка.
 
+ feature/decorators-log
+
+- `src/` — основной код
+  - `masks.py` — маскировка номеров карт и счетов
+  - `processing.py` — фильтрация и сортировка операций
+
+
+
+
+```python
+## Модуль `decorators`
+
+Содержит декораторы для логирования выполнения функций.
+
+### Декоратор `log(filename=None)`
+
+Автоматически логирует вызовы функций: успешные и с ошибками.
+
+#### Пример: логирование в файл
+
+```python
+from src.decorators.decorators import log
+
+@log(filename="mylog.txt")
+def add(a, b):
+    return a + b
+
+add(1, 2)  # Запишет в mylog.txt: "add ok"
+=======
 ## 📁 Структура проекта
 
 - `src/` — основной код
@@ -56,3 +88,4 @@ from src.generators.generators import filter_by_currency
 usd_ops = filter_by_currency(transactions, "USD")
 for op in usd_ops:
     print(op['description'])
+ develop
