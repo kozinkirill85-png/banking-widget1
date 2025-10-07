@@ -55,6 +55,13 @@ lines_after_imports = 2
 disallow_untyped_defs = true
 warn_return_any = true
 exclude = ["venv"]
+python_version = "3.10"
+strict = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
 
 # Поиск пакетов в src
 [tool.setuptools.packages.find]

@@ -89,3 +89,11 @@ usd_ops = filter_by_currency(transactions, "USD")
 for op in usd_ops:
     print(op['description'])
  develop
+## Тестирование
+
+Проект покрыт автоматизированными тестами с использованием библиотеки `pytest`.
+
+### Запуск тестов
+
+```bash
+pytest tests/ -v
