@@ -97,3 +97,14 @@ for op in usd_ops:
 
 ```bash
 pytest tests/ -v
+
+## Новая функциональность
+
+Теперь проект поддерживает чтение данных о транзакциях из следующих форматов:
+- JSON (уже было)
+- CSV
+- Excel (.xlsx)
+
+Для работы с CSV и Excel требуется установка зависимостей:
+```bash
+pip install -r requirements.txt
