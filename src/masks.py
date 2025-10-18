@@ -4,6 +4,7 @@ import logging
 from pathlib import Path
 from typing import Union
 from logging import Logger
+from typing import Generator
 
 # Создаем логер для модуля masks
 logger: Logger = logging.getLogger(__name__)
@@ -30,25 +31,11 @@ logger.setLevel(logging.DEBUG)
 
 
 def get_mask_card_number(card_number: Union[int, str]) -> str:
-    """Возвращает маскированный номер карты в формате XXXX XX** **** XXXX.
-
-    Args:
-        card_number: Номер карты (16 цифр).
-
-    Returns:
-        Маскированная строка.
-    """
-
-
-    card_str = str(card_number).strip()
-    if len(card_str) != 16 or not card_str.isdigit():
-        logger.error(f"Неверный номер карты: '{card_number}'")
+    """Возвращает маскированный номер карты в формате XXXX XX** **** XXXX."""
+    card_str = str(card_number)
+    if len(card_str) != 16:
         raise ValueError("Номер карты должен содержать ровно 16 цифр.")
-
-# Объявляем masked до return
-    masked = f"{card_str[:4]} {card_str[4:8]} {card_str[8:12]} {card_str[12:]}"
-    logger.debug(f"Маскировка карты: {card_number} -> {masked}")
-    return masked
+    return f"{card_str[:4]} {card_str[4:6]}** **** {card_str[-4:]}"
 
 
 def get_mask_account(account_number: Union[int, str]) -> str:
@@ -68,3 +55,12 @@ def get_mask_account(account_number: Union[int, str]) -> str:
     masked = f"**{acc_str[-4:]}"
     logger.debug(f"Маскировка счета: {account_number} -> {masked}")
     return masked
+
+
+def card_number_generator(start: int, end: int) -> Generator[str, None, None]:
+    if start > end or start < 0 or end > 9999999999999999:
+        raise ValueError("Неверный диапазон номеров карт.")
+    for num in range(start, end + 1):
+        card_str = str(num).zfill(16)
+        formatted = f"{card_str[:4]} {card_str[4:8]} {card_str[8:12]} {card_str[12:]}"
+        yield formatted

@@ -1,25 +1,42 @@
-# src/processing.py
+import re
+from collections import Counter
+from typing import List, Dict, Any
 
-from typing import Any, Dict, List
 
-
-def filter_by_state(operations: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
+def process_bank_search(data: List[Dict[str, Any]], search: str) -> List[Dict[str, Any]]:
     """
-    Фильтрует операции по статусу.
+    Функция поиска операций по строке в описании с использованием регулярных выражений.
 
-    :param operations: Список словарей с операциями
-    :param state: Статус для фильтрации (по умолчанию 'EXECUTED')
-    :return: Новый список операций с заданным статусом
+    Args:
+        data: Список словарей с данными о банковских операциях.
+        search: Строка для поиска в поле 'description'.
+
+    Returns:
+        Список словарей, у которых в описании найдена строка.
     """
-    return [op for op in operations if op.get("state") == state]
+    if not search.strip():
+        return data
+
+    pattern = re.compile(re.escape(search), re.IGNORECASE)
+    return [item for item in data if pattern.search(item.get("description", ""))]
 
 
-def sort_by_date(operations: List[Dict[str, Any]], reverse: bool = True) -> List[Dict[str, Any]]:
+def process_bank_operations(data: List[Dict[str, Any]], categories: List[str]) -> Dict[str, int]:
     """
-    Сортирует операции по дате.
+    Функция подсчёта количества операций по заданным категориям.
 
-    :param operations: Список словарей с операциями
-    :param reverse: Порядок сортировки (True — по убыванию, False — по возрастанию)
-    :return: Новый отсортированный список
+    Args:
+        data: Список словарей с данными о банковских операциях.
+        categories: Список категорий для подсчёта.
+
+    Returns:
+        Словарь, где ключ — категория, значение — количество операций.
     """
-    return sorted(operations, key=lambda x: x["date"], reverse=reverse)
+    # Извлекаем категории из description (или можно использовать другое поле)
+    # Здесь предполагается, что category = description, но можно адаптировать
+    descriptions = [item.get("description", "") for item in data]
+    counter = Counter(descriptions)
+
+    # Возвращаем только те категории, которые переданы в аргументе
+    result = {cat: counter.get(cat, 0) for cat in categories}
+    return result
