@@ -63,8 +63,7 @@ def test_log_error_file():
     with open(log_file, "r", encoding="utf-8") as f:
         log_content = f.read().strip()
 
-    expected = "my_function_error error: ValueError. Inputs: (-1,), {}"
-    assert log_content == expected
+    assert log_content == "my_function_error error: ValueError. Inputs: (-1,), {}"
 
     os.remove(log_file)
 

@@ -1,0 +1,14 @@
+Функция my_function_console вызвана с аргументами: (3, 4), {}. Результат: 7
+Функция func_with_error вызвана с аргументами: (), {}. Ошибка: Something went wrong
+Функция my_function_console вызвана с аргументами: (3, 4), {}. Результат: 7
+Функция func_with_error вызвана с аргументами: (), {}. Ошибка: Something went wrong
+Функция my_function_console вызвана с аргументами: (3, 4), {}. Результат: 7
+Функция func_with_error вызвана с аргументами: (), {}. Ошибка: Something went wrong
+my_function_console ok
+func_with_error error: RuntimeError. Inputs: (), {}
+my_function_console ok
+func_with_error error: RuntimeError. Inputs: (), {}
+my_function_console ok
+func_with_error error: RuntimeError. Inputs: (), {}
+my_function_console ok
+func_with_error error: RuntimeError. Inputs: (), {}

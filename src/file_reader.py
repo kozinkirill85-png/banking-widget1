@@ -1,56 +1,29 @@
+import json
 import pandas as pd
-from pathlib import Path
-from typing import List, Dict, Any
 
 
-def read_transactions_from_csv(file_path: str) -> List[Dict[str, Any]]:
-    """
-    Читает финансовые транзакции из CSV-файла и возвращает список словарей.
-
-    Args:
-        file_path (str): Путь к CSV-файлу.
-
-    Returns:
-        List[Dict[str, Any]]: Список транзакций или пустой список при ошибке.
-    """
+def read_transactions_from_json(file_path: str) -> list:
+    """Читает транзакции из JSON файла."""
     try:
-        path = Path(file_path)
-        if not path.exists():
-            print(f"Файл {file_path} не найден.")
-            return []
-
-        df = pd.read_csv(path)
-        # Преобразуем DataFrame в список словарей
-        transactions = df.to_dict(orient="records")
-        print(f"✅ Успешно прочитано {len(transactions)} транзакций из CSV.")
-        return transactions
-
-    except Exception as e:
-        print(f"Ошибка при чтении CSV-файла {file_path}: {e}")
+        with open(file_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
         return []
 
 
-def read_transactions_from_excel(file_path: str) -> List[Dict[str, Any]]:
-    """
-    Читает финансовые транзакции из Excel-файла (.xlsx) и возвращает список словарей.
-
-    Args:
-        file_path (str): Путь к Excel-файлу.
-
-    Returns:
-        List[Dict[str, Any]]: Список транзакций или пустой список при ошибке.
-    """
+def read_transactions_from_csv(file_path: str) -> list:
+    """Читает транзакции из CSV файла."""
     try:
-        path = Path(file_path)
-        if not path.exists():
-            print(f"Файл {file_path} не найден.")
-            return []
+        df = pd.read_csv(file_path)
+        return df.to_dict("records")
+    except (FileNotFoundError, pd.errors.EmptyDataError):
+        return []
 
-        df = pd.read_excel(path)
-        transactions = df.to_dict(orient="records")
-        print(f"✅ Успешно прочитано {len(transactions)} транзакций из Excel.")
-        return transactions
 
-    except Exception as e:
-        print(f"Ошибка при чтении Excel-файла {file_path}: {e}")
+def read_transactions_from_excel(file_path: str) -> list:
+    """Читает транзакции из XLSX файла."""
+    try:
+        df = pd.read_excel(file_path)
+        return df.to_dict("records")
+    except (FileNotFoundError, ValueError):
         return []
