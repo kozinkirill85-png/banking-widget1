@@ -1,8 +1,13 @@
 import json
 import pandas as pd
-from typing import Any
+from typing import List, Dict, Any
 from typing import cast
 
+
+def load_transactions(file_path: str = "data/operations.xlsx") -> List[Dict[str, Any]]:
+    """Загружает транзакции из Excel-файла."""
+    df = pd.read_excel(file_path)
+    return df.to_dict("records")
 
 
 def read_transactions_from_csv(file_path: str) -> list[dict[str, Any]]:
