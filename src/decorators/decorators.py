@@ -1,14 +1,14 @@
 import sys
 from functools import wraps
-from typing import Callable, Any
+from typing import Callable, Any, Optional
 
 
-def log(filename: str = None) -> Callable:
+def log(filename: str | None = None) -> Callable[..., Any]:
     """
     Декоратор для логирования вызовов функций.
     Если filename указан — пишет в файл, иначе — в консоль.
     """
-    def decorator(func: Callable) -> Callable:
+    def decorator(func: Callable) -> Callable[..., Any]:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             try:
