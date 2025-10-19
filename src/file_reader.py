@@ -1,29 +1,25 @@
 import json
 import pandas as pd
+from typing import Any
+from typing import cast
 
 
-def read_transactions_from_json(file_path: str) -> list:
-    """Читает транзакции из JSON файла."""
-    try:
-        with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return []
 
-
-def read_transactions_from_csv(file_path: str) -> list:
-    """Читает транзакции из CSV файла."""
+def read_transactions_from_csv(file_path: str) -> list[dict[str, Any]]:
     try:
         df = pd.read_csv(file_path)
-        return df.to_dict("records")
+        records = df.to_dict("records")
+        return cast(list[dict[str, Any]], records)
     except (FileNotFoundError, pd.errors.EmptyDataError):
         return []
 
 
-def read_transactions_from_excel(file_path: str) -> list:
-    """Читает транзакции из XLSX файла."""
+
+from typing import Any, cast
+
+def read_transactions_from_excel(file_path: str) -> list[dict[str, Any]]:
     try:
         df = pd.read_excel(file_path)
-        return df.to_dict("records")
+        return cast(list[dict[str, Any]], df.to_dict("records"))
     except (FileNotFoundError, ValueError):
         return []

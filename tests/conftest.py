@@ -1,8 +1,11 @@
 import pytest
+from typing import Any
+
+
 
 
 @pytest.fixture
-def sample_operations() -> list:
+def sample_operations() -> list[dict[str, Any]]:
     """Фикстура: список операций для тестов."""
     return [
         {
@@ -65,6 +68,6 @@ def sample_operations() -> list:
 
 
 @pytest.fixture
-def empty_operations() -> list:
+def empty_operations() -> list[dict[str, Any]]:
     """Фикстура: пустой список операций."""
     return []

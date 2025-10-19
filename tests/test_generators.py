@@ -1,8 +1,10 @@
 import pytest
+from typing import Any
+
 
 
 @pytest.fixture
-def sample_operations() -> list:
+def sample_operations() -> list[dict[str, Any]]:
     return [
         {
             "id": 41428829,

@@ -3,7 +3,7 @@
 from typing import Any, Dict, Iterator, List, Generator
 
 
-def filter_by_currency(transactions: List[Dict], currency: str) -> Generator[Dict, None, None]:
+def filter_by_currency(transactions: List[Dict[str, Any]], currency: str) -> Generator[Dict[str, Any], None, None]:
     """Генератор, возвращающий транзакции с указанной валютой."""
     for transaction in transactions:
         trans_currency = transaction.get("operationAmount", {}).get("currency", {}).get("code")
